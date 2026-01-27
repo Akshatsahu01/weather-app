@@ -1,0 +1,13 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "CLI app to fetch and display current weather",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": ["weather", "cli"],
+  "author": "",
+  "license": "MIT"
+}
