@@ -4,6 +4,8 @@
 
 Weather App is a lightweight CLI utility for quickly viewing current weather for a named city. A user supplies a city name, and the app resolves the location and displays the latest available current conditions from Open-Meteo.
 
+The current implementation uses JavaScript function hoisting: the CLI entry point invokes `getWeather` before its function declaration, relying on JavaScript's module initialization behavior.
+
 ## 2. Problem Statement
 
 Users need a fast, low-friction way to check current weather from a terminal without opening a browser or managing an API key.

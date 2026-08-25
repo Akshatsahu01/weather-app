@@ -50,6 +50,8 @@ The application has four logical responsibilities in one source file:
 3. **Weather orchestration**: `getWeather(cityName)` performs geocoding followed by weather retrieval.
 4. **Presentation**: maps WMO weather codes and prints the current conditions.
 
+The project uses JavaScript hoisting for its function declarations: the main execution block calls `getWeather(cityName)` before the declaration appears, and `getWeather` can resolve `makeRequest` because function declarations are hoisted during module initialization.
+
 ## 6. Main Flow
 
 1. Start with `node app.js <city-name>` or `npm start -- <city-name>`.

@@ -12,7 +12,13 @@ import https from 'https'
 
 No external npm packages are required.
 
-## 2. Functions
+## 2. Hoisting Behavior
+
+The CLI entry point intentionally calls `getWeather(cityName)` before the `getWeather` declaration. This works because JavaScript hoists function declarations before executing the module. The same behavior makes `makeRequest` available inside `getWeather` even though its declaration appears earlier in the source than the `getWeather` declaration.
+
+The `const` variables remain declared before use. They are not accessed through hoisting and would be unavailable during their temporal dead zone.
+
+## 3. Functions
 
 ### `makeRequest(url)`
 
@@ -49,7 +55,7 @@ No external npm packages are required.
 7. Prints the current weather.
 8. Catches errors, prints the message, and exits with code `1`.
 
-## 3. API Contracts
+## 4. API Contracts
 
 ### Geocoding request
 
@@ -99,11 +105,11 @@ Expected current data:
 }
 ```
 
-## 4. Weather-Code Mapping
+## 5. Weather-Code Mapping
 
 The implementation maps WMO codes `0`, `1`, `2`, `3`, `45`, `48`, `51`, `53`, `55`, `61`, `63`, `65`, `71`, `73`, `75`, `80`, `81`, `82`, `85`, `86`, `95`, `96`, and `99` to text labels. Any unrecognized code displays as `Unknown`.
 
-## 5. CLI Contract
+## 6. CLI Contract
 
 ### Valid invocation
 
@@ -129,14 +135,14 @@ and exits with code `1`.
 
 The output includes the resolved location, temperature in Celsius, relative humidity percentage, condition label, and wind speed in km/h.
 
-## 6. Error Handling
+## 7. Error Handling
 
 - Invalid or missing command-line input: usage error, exit `1`.
 - No geocoding match: city-not-found error, exit `1`.
 - Network error or invalid JSON: generic error message, exit `1`.
 - Unknown weather code: non-fatal `Unknown` label.
 
-## 7. Recommended Test Seams
+## 8. Recommended Test Seams
 
 The current file is tightly coupled to live HTTPS calls. To make automated tests practical, extract or inject the request function and separate formatting from orchestration. Useful test cases are:
 
